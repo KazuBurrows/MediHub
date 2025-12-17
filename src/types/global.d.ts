@@ -7,7 +7,7 @@ type MatrixCell = {
 
 type Matrix = MatrixCell[][];
 
-interface ScheduleCell {
+interface Schedule {
   session?: string;
   speciality?: string;
   subspeciality?: string;
@@ -21,8 +21,8 @@ interface ScheduleCell {
 
 interface TheatreSchedule {
   theatre: string;
-  am: ScheduleCell[];
-  pm: ScheduleCell[];
+  am: Schedule[];
+  pm: Schedule[];
 }
 
 interface ScheduleMatrixProps {

@@ -3,11 +3,11 @@ import React, { useState } from "react";
 
 
 const ScheduleMatrix: React.FC<ScheduleMatrixProps> = ({ facility, theatres }) => {
-  const [selectedCell, setSelectedCell] = useState<ScheduleCell | null>(null);
+  const [selectedCell, setSelectedCell] = useState<Schedule | null>(null);
 
   const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
-  const handleCellClick = (cell: ScheduleCell) => {
+  const handleCellClick = (cell: Schedule) => {
     setSelectedCell(cell);
   };
 

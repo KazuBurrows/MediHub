@@ -1,5 +1,5 @@
 import React from "react";
-import ScheduleMatrix from "../components/matrix";
+import ScheduleList from "../components/list";
 
 
 const scheduleData: { facility: string; theatres: TheatreSchedule[] }[] = [
@@ -67,12 +67,12 @@ const scheduleData: { facility: string; theatres: TheatreSchedule[] }[] = [
   }
 ];
 
-const Schedule: React.FC = () => {
+const ScheduleL: React.FC = () => {
   return (
     <div style={pageStyle}>
       {scheduleData.map((facilityBlock, index) => (
         <div key={index} style={matrixWrapper}>
-          <ScheduleMatrix
+          <ScheduleList
             facility={facilityBlock.facility}
             theatres={facilityBlock.theatres}
           />
@@ -102,4 +102,4 @@ const matrixWrapper: React.CSSProperties = {
   borderRadius: "8px",
 };
 
-export default Schedule;
+export default ScheduleL;

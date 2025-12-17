@@ -13,7 +13,10 @@ const NavBar: React.FC = () => {
           <Link to="/dashboard" style={linkStyle}>Dashboard</Link>
         </li>
         <li style={navItemStyle}>
-          <Link to="/matrix" style={linkStyle}>Schedule</Link>
+          <Link to="/list" style={linkStyle}>List</Link>
+        </li>
+        <li style={navItemStyle}>
+          <Link to="/matrix" style={linkStyle}>Matrix</Link>
         </li>
       </ul>
     </nav>
