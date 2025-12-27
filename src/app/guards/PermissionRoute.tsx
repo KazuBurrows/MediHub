@@ -1,6 +1,5 @@
 import { JSX } from "react";
 import { useAuth } from "../providers/auth-provider";
-import { Navigate } from "react-router-dom";
 
 export function PermissionRoute({
   children,
