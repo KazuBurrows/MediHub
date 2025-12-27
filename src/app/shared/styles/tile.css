@@ -1,0 +1,33 @@
+.tile {
+  display: block;
+  background: #07315c; /* Health NZ navy */
+  color: white;
+  padding: 20px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  margin-bottom: 20px;
+  width: 15rem;
+}
+
+/* Hover effect */
+.tile:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+
+/* Title */
+.tile-title {
+  margin: 0 0 8px;
+  font-size: 20px;
+  font-weight: 600;
+  color: white;
+}
+
+/* Description */
+.tile-description {
+  margin: 0;
+  font-size: 15px;
+  opacity: 0.9;
+}

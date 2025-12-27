@@ -1,9 +1,11 @@
 import { PERMISSIONS } from "../../config/permissions";
 import { PermissionRoute } from "../../guards/PermissionRoute";
+import { MainLayout } from "../../layout/main-layout";
 
 export default function SchedulePage() {
   return (
-    <div>
+    <MainLayout>
+
       <h1>Schedule</h1>
 
       <PermissionRoute permissions={[PERMISSIONS.SCHEDULE_WRITE]}>
@@ -13,6 +15,6 @@ export default function SchedulePage() {
       <PermissionRoute permissions={[PERMISSIONS.SCHEDULE_READ]}>
         <p>Read</p>
       </PermissionRoute>
-    </div>
+    </MainLayout>
   );
 }

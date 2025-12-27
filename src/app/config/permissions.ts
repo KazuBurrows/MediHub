@@ -5,6 +5,7 @@ export const PERMISSIONS = {
   USER_MANAGE: "users.manage",
   FACILITY_MANAGE: "facility.manage",
   DASHBOARD_VIEW: "dashboard.view",
+  ADMIN_PANEL: "panel.read",
 } as const;
 
 export type Permission = (typeof PERMISSIONS)[keyof typeof PERMISSIONS];
@@ -16,6 +17,7 @@ export const ROLE_PERMISSIONS: Record<string, Permission[]> = {
     PERMISSIONS.USER_MANAGE,
     PERMISSIONS.FACILITY_MANAGE,
     PERMISSIONS.DASHBOARD_VIEW,
+    PERMISSIONS.ADMIN_PANEL,
   ],
   Viewer: [PERMISSIONS.SCHEDULE_READ],
 };

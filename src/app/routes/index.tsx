@@ -5,12 +5,24 @@ import SchedulePage from "./schedule";
 import { ProtectedRoute } from "../guards/ProtectedRoute";
 import { RoleRoute } from "../guards/RoleRoute";
 import Forbidden from "./errors/403";
+import Dashboard from "./dashboards";
 
 export function AppRoutes() {
   return (
     <Routes>
       <Route path="/login" element={<LoginPage />} />
       <Route path="/logout" element={<LogoutPage />} />
+
+      <Route
+        path="/"
+        element={
+          <ProtectedRoute>
+            <RoleRoute roles={["Admin", "Viewer"]}>
+              <Dashboard />
+            </RoleRoute>
+          </ProtectedRoute>
+        }
+      />
 
       <Route
         path="/schedule"
@@ -32,10 +44,10 @@ export function AppRoutes() {
         }
       />
 
-      <Route path="/" element={<Navigate to="/schedule" replace />} />
+      <Route path="/" element={<Navigate to="/" replace />} />
 
       {/* catch-all fallback */}
-      <Route path="*" element={<Navigate to="/schedule" replace />} />
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 }

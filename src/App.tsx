@@ -6,6 +6,9 @@ import { MsalAppProvider } from "./app/providers/msal-provider";
 import { AuthProvider } from "./app/providers/auth-provider";
 import { AppRoutes } from "./app/routes";
 
+import "./app/shared/styles/theme.css";
+import "./app/shared/styles/base.css";
+
 const queryClient = new QueryClient();
 
 export default function App() {

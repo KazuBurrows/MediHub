@@ -1,0 +1,23 @@
+:root {
+  /* Primary Health NZ palette */
+  --color-primary: #003366;   /* Deep blue */
+  --color-secondary: #0072ce; /* Lighter blue */
+  --color-accent: #009a44;    /* Green */
+
+  /* Neutrals */
+  --color-text-dark: #333333;
+  --color-text-mid: #666666;
+  --color-text-light: #f5f5f5;
+  --color-bg: #ffffff;
+
+  /* Layout */
+  --max-width: 1200px;
+  --radius: 8px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+  --shadow-md: 0 2px 6px rgba(0,0,0,0.15);
+
+  /* Typography */
+  --font-sans: "Inter", "Helvetica Neue", Arial, sans-serif;
+
+  --header-gradient: var(--Header-grad, linear-gradient(90deg, #143345 44.5%, #41236a 100%));
+}
