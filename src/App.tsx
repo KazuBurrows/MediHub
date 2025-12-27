@@ -1,22 +1,23 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./views/home";
-import Dashboard from "./views/dashboard";
-import NavBar from "./components/navbar"; // import the new NavBar
-import ScheduleL from "./views/scheduleList";
-import ScheduleM from "./views/scheduleMatrix";
+// src/App.tsx
+import { BrowserRouter } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-function App() {
+import { MsalAppProvider } from "./app/providers/msal-provider";
+import { AuthProvider } from "./app/providers/auth-provider";
+import { AppRoutes } from "./app/routes";
+
+const queryClient = new QueryClient();
+
+export default function App() {
   return (
-    <Router>
-      <NavBar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/list" element={<ScheduleL />} />
-        <Route path="/matrix" element={<ScheduleM />} />
-      </Routes>
-    </Router>
+    <MsalAppProvider>
+      <AuthProvider>
+        <QueryClientProvider client={queryClient}>
+          <BrowserRouter>
+            <AppRoutes />
+          </BrowserRouter>
+        </QueryClientProvider>
+      </AuthProvider>
+    </MsalAppProvider>
   );
 }
-
-export default App;
