@@ -4,7 +4,7 @@ import { PublicClientApplication } from "@azure/msal-browser";
 import { msalConfig } from "../config/msalConfig";
 import { useEffect, useState } from "react";
 
-const msalInstance = new PublicClientApplication(msalConfig);
+export const msalInstance = new PublicClientApplication(msalConfig);
 
 export function MsalAppProvider({ children }: { children: React.ReactNode }) {
   const [ready, setReady] = useState(false);

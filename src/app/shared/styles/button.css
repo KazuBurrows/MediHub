@@ -1,0 +1,60 @@
+/* src/styles/button.css */
+
+.mh-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 10px 20px;
+  border-radius: 9999px;             /* pill shape */
+  border: none;
+
+  font-size: 15px;
+  font-weight: 500;
+
+  background-color: #cfe2ff;         /* light blue */
+  color: #143345;                    /* dark navy text */
+  text-decoration: none;
+
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+/* Default variant (secondary-style careers button) */
+.mh-btn-secondary {
+  background-color: #cfe2ff;
+  color: #143345;
+}
+
+.mh-btn-secondary:hover {
+  background-color: #b8d4ff;
+  transform: translateY(-1px);
+}
+
+/* If you ever want a darker primary version */
+.mh-btn-primary {
+  background-color: var(--color-secondary);
+  color: var(--color-text-dark);
+}
+
+.mh-btn-primary:hover {
+  background-color: #0f2837;
+}
+
+/* Text + arrow */
+.mh-btn-label {
+  white-space: nowrap;
+}
+
+.mh-btn-arrow {
+  font-size: 16px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  transition: transform 0.15s ease;
+}
+
+/* Subtle arrow nudge on hover */
+.mh-btn:hover .mh-btn-arrow {
+  transform: translateX(3px);
+}

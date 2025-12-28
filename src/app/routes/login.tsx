@@ -1,24 +1,29 @@
-// src/app/routes/login.tsx
 import { useAuth } from "../providers/auth-provider";
 import { Navigate } from "react-router-dom";
 import { LoginButton } from "../features/auth/components/LoginButton";
+import "../shared/styles/login.css";
 
 export default function LoginPage() {
   const { isAuthenticated, loading } = useAuth();
 
-  // Wait for MSAL to finish loading
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <div className="login-loading">Loading...</div>;
 
-  // ⭐ If already logged in, redirect to schedule
   if (isAuthenticated) {
     return <Navigate to="/" replace />;
   }
 
   return (
-    <div style={{ padding: "2rem" }}>
-      <h1>Welcome to MediHub</h1>
-      <p>Please sign in with your Microsoft account to continue.</p>
-      <LoginButton />
+    <div className="login-container">
+      <div className="login-card">
+        <h1 className="login-title">Welcome to MediHub</h1>
+        <p className="login-subtitle">
+          Please sign in with your Microsoft account to continue.
+        </p>
+
+        <div className="login-button-wrapper">
+          <LoginButton />
+        </div>
+      </div>
     </div>
   );
 }

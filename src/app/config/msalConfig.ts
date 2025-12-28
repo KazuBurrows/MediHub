@@ -9,4 +9,7 @@ export const msalConfig = {
     cacheLocation: "sessionStorage",
     storeAuthStateInCookie: false,
   },
+  apiScopes: [
+    process.env.REACT_APP_AZURE_API_SCOPE!, 
+  ],
 };
