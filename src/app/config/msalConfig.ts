@@ -1,8 +1,8 @@
 export const msalConfig = {
   auth: {
     clientId: process.env.REACT_APP_AZURE_CLIENT_ID!,
-    authority: `https://login.microsoftonline.com/${process.env.REACT_APP_AZURE_TENANT_ID}`,
-    knownAuthorities: ["login.microsoftonline.com", "login.windows.net"],
+    authority: `https://login.microsoftonline.com/${process.env.REACT_APP_AZURE_TENANT_ID}/v2.0`,
+    knownAuthorities: ["login.microsoftonline.com"],
     redirectUri: "/",
   },
   cache: {
