@@ -15,7 +15,7 @@ export async function acquireToken(): Promise<string> {
       account,
       scopes: msalConfig.apiScopes,
     });
-    console.log("Silent token:", silentResult.accessToken)
+
     return silentResult.accessToken;
   } catch (silentError) {
     console.warn("Silent token acquisition failed, trying popup…", silentError);
