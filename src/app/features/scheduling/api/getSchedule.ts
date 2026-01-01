@@ -11,24 +11,28 @@ export function useSchedule() {
     async function fetchData() {
       if (!account) return;
 
-      const tokenResponse = await instance.acquireTokenSilent({
-        scopes: ["api://8ad458fa-2142-4fc2-82c1-ef4c4a8972a5/user_impersonation"],
-        account,
-      });
+      try {
+        const tokenResponse = await instance.acquireTokenSilent({
+          scopes: ["api://5075e85b-cc81-456a-86e4-470c95ab2b68/user_impersonation"],
+          account,
+        });
 
-      const res = await fetch(
-        "https://medihub-api-arctf0h2eyajhrgd.australiaeast-01.azurewebsites.net/api/schedule", // <-- no code param
-        {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${tokenResponse.accessToken}`,
-          },
-        }
-      );
+        const res = await fetch(
+          "https://medihub-api-arctf0h2eyajhrgd.australiaeast-01.azurewebsites.net/api/schedule",
+          {
+            headers: {
+              Authorization: `Bearer ${tokenResponse.accessToken}`,
+            },
+          }
+        );
 
-      const data = await res.json();
-      setSchedule(data);
-      setLoading(false);
+        const data = await res.json();
+        setSchedule(data);
+      } catch (err) {
+        console.error("Failed to fetch schedule:", err);
+      } finally {
+        setLoading(false);
+      }
     }
 
     fetchData();
