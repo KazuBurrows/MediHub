@@ -1,4 +1,3 @@
-import { useQuery } from "@tanstack/react-query";
 import { PERMISSIONS } from "../../config/permissions";
 import { PermissionRoute } from "../../guards/PermissionRoute";
 import { MainLayout } from "../../layout/main-layout";
@@ -11,7 +10,8 @@ export default function SchedulePage() {
   // });
 
   const { schedule, loading } = useSchedule();
-
+  console.log(schedule)
+  console.log(loading)
 
   // if (isLoading) return <p>Loading…</p>;
   // if (error) return <p>Failed to load schedule</p>;
