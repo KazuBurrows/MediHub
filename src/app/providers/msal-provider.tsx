@@ -1,40 +1,34 @@
-// src/app/providers/msal-provider.tsx
-import { MsalProvider, useMsal } from "@azure/msal-react";
-import { PublicClientApplication } from "@azure/msal-browser";
+import { EventType, PublicClientApplication, AuthenticationResult } from "@azure/msal-browser";
+import { MsalProvider } from "@azure/msal-react";
 import { msalConfig } from "../config/msalConfig";
-import { useEffect, useState } from "react";
 
+/**
+* MSAL should be instantiated outside of the component tree to prevent it from being re-instantiated on re-renders.
+* For more, visit: https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-react/docs/getting-started.md
+*/
 export const msalInstance = new PublicClientApplication(msalConfig);
 
-export function MsalAppProvider({ children }: { children: React.ReactNode }) {
-  const [ready, setReady] = useState(false);
+const allAccounts = msalInstance.getAllAccounts();
 
-  useEffect(() => {
-    async function init() {
-      await msalInstance.initialize();          // ✅ required
-      await msalInstance.handleRedirectPromise(); // ✅ must come after initialize
-      setReady(true);
-    }
-    init();
-  }, []);
-
-  if (!ready) return null; // or a loading spinner
-
-  return (
-    <MsalProvider instance={msalInstance}>
-      <ActiveAccountManager>{children}</ActiveAccountManager>
-    </MsalProvider>
-  );
+// Default to using the first account if no account is active on page load
+if (!msalInstance.getActiveAccount() && allAccounts.length > 0) {
+  msalInstance.setActiveAccount(allAccounts[0]);
 }
 
-function ActiveAccountManager({ children }: { children: React.ReactNode }) {
-  const { instance, accounts } = useMsal();
-
-  useEffect(() => {
-    if (accounts.length > 0) {
-      instance.setActiveAccount(accounts[0]);
+// Listen for sign-in event and set active account
+msalInstance.addEventCallback((event) => {
+  if (event.eventType === EventType.LOGIN_SUCCESS) {
+    const account = (event.payload as AuthenticationResult)?.account;
+    if (account) {
+      msalInstance.setActiveAccount(account);
     }
-  }, [accounts, instance]);
+  }
+});
 
-  return <>{children}</>;
+export function MsalAppProvider({ children }: { children: React.ReactNode }) {
+  return (
+    <MsalProvider instance={msalInstance}>
+      {children}
+    </MsalProvider>
+  );
 }

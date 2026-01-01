@@ -1,17 +1,26 @@
 import axios from "axios";
-import { acquireToken } from "../../features/auth/api/acquireToken";
+import { acquireAccessToken } from "../../features/auth/api/acquireToken";
+import { msalInstance } from "../../providers/msal-provider";
 
-export const api = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
+
+const api = axios.create({
+  baseURL: "https://medihub-api-arctf0h2eyajhrgd.australiaeast-01.azurewebsites.net/api/"
 });
 
-api.interceptors.request.use(async (config) => {
-  const token = await acquireToken();
-console.log("token:", token)
-  config.headers = config.headers || {};
 
-  // Always safe
-  config.headers["Authorization"] = `Bearer ${token}`;
+api.interceptors.request.use(async (config) => {
+  console.log("config:", config)
+  const account = msalInstance.getActiveAccount();
+    console.log("account:", account)
+
+  if (!account) return config;
+
+  const token = await acquireAccessToken(msalInstance, account);
+        console.log("token:", token)
+
+  config.headers.Authorization = `Bearer ${token}`;
 
   return config;
 });
+
+export default api;

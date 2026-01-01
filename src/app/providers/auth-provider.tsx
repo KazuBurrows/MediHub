@@ -23,6 +23,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
+    console.log("ID TOKEN CLAIMS:", account?.idTokenClaims);
+
     if (account && account.idTokenClaims) {
       const mapped = mapClaimsToUser(account.idTokenClaims);
       setUser(mapped);
@@ -41,6 +43,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     loading,
   };
 
+  // value.roles = ["Admin"]
   console.log("User:", value.user)
   console.log("isAuthenticated:", value.isAuthenticated)
   console.log("Roles:", value.roles)
