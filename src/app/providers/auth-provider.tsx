@@ -5,7 +5,7 @@ import { mapClaimsToUser } from "../features/auth/utils/mapClaimsToUser";
 import { AuthContextValue } from "../shared/types/auth";
 import { User } from "../shared/types/user";
 
-// ✅ 1. Create the context at the top
+// Create the context at the top
 const AuthContext = createContext<AuthContextValue>({
   user: null,
   isAuthenticated: false,
@@ -14,7 +14,7 @@ const AuthContext = createContext<AuthContextValue>({
   loading: true,
 });
 
-// ✅ 2. Provider component
+// Provider component
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const { accounts } = useMsal();
   const account = accounts[0];
@@ -52,7 +52,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
-// ✅ 3. Hook to use the context
+// Hook to use the context
 export function useAuth() {
   return useContext(AuthContext);
 }
