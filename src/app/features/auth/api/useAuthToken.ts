@@ -1,10 +1,11 @@
 import { useMsal } from "@azure/msal-react";
+import { useCallback } from "react";
 
 export function useAuthToken() {
   const { instance, accounts } = useMsal();
   const account = accounts[0];
 
-  async function getToken() {
+  const getToken = useCallback(async () => {
     if (!account) throw new Error("No account available");
 
     const response = await instance.acquireTokenSilent({
@@ -13,7 +14,7 @@ export function useAuthToken() {
     });
 
     return response.accessToken;
-  }
+  }, [account, instance]);
 
   return { getToken };
 }
