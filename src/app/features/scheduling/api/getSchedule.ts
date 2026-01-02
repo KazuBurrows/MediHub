@@ -6,7 +6,7 @@ export function useSchedule() {
 
   useEffect(() => {
     get("/schedule");
-  }, [get]);
+  }, []);
 
   return {
     schedule: data ?? [],
